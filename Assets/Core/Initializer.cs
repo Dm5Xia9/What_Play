@@ -15,7 +15,7 @@ public class Initializer : MonoBehaviour
     private void Awake()
     {
         string pathSettings;
-#if DEBUG
+#if UNITY_EDITOR
         pathSettings = Path.Combine(AssetDatabase.GetAssetPath(this.GetInstanceID()), "Assets", "settings.json");
 #else
 //save document
