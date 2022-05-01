@@ -7,8 +7,9 @@ namespace Game_Code.Sasha
     {
         [SerializeField] private Transform parent, child;
         [SerializeField] private Vector3 offset;
-
-        private void Update()
+        
+        
+        private void LateUpdate()
         {
             var pos = child.position;
             child.position = new Vector3(pos.x, parent.position.y + offset.y, pos.z);
