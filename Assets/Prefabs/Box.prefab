@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7628090255989336467}
   - component: {fileID: 48302079294064778}
-  m_Layer: 0
+  - component: {fileID: 2881018662781122928}
+  m_Layer: 8
   m_Name: Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50,6 +51,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2881018662781122928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7628090255989336464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98312af1be524af58ab163840fdf8545, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 48302079294064778}
+  collider: {fileID: 7628090256724380344}
+  renderer: {fileID: 2566974407291183521}
+  selectedColor: {r: 0.6226415, g: 0.51338553, b: 0.51338553, a: 1}
+  unselectedColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &7628090256724380294
 GameObject:
   m_ObjectHideFlags: 0
@@ -60,7 +78,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7628090256724380345}
   - component: {fileID: 7628090256724380344}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,9 +120,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7628090255989336467}
     m_Modifications:
+    - target: {fileID: 3942306591074582537, guid: 7600f51bbb958b64aabee4ba92143131, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5672481643253045248, guid: 7600f51bbb958b64aabee4ba92143131, type: 3}
       propertyPath: m_Name
       value: Box Model
+      objectReference: {fileID: 0}
+    - target: {fileID: 5672481643253045248, guid: 7600f51bbb958b64aabee4ba92143131, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5672481643253045249, guid: 7600f51bbb958b64aabee4ba92143131, type: 3}
       propertyPath: m_RootOrder
@@ -150,8 +176,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4769515271035509186, guid: 7600f51bbb958b64aabee4ba92143131, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 7600f51bbb958b64aabee4ba92143131, type: 3}
+--- !u!23 &2566974407291183521 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 358992966345180538, guid: 7600f51bbb958b64aabee4ba92143131, type: 3}
+  m_PrefabInstance: {fileID: 2838639595342685403}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7628090255484648666 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5672481643253045249, guid: 7600f51bbb958b64aabee4ba92143131, type: 3}

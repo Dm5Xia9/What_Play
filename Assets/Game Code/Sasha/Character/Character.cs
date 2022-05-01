@@ -7,13 +7,13 @@ namespace Game_Code.Sasha
     {
         [SerializeField] private Rigidbody rb;
         [SerializeField] private float moveSpeed;
-        
+
+        private Vector3 _moveVector;
         private Vector3 _direction;
 
-        private void Update()
+        public void SetDirection(Vector3 direction)
         {
-            var horizontal = Input.GetAxis("Horizontal") * rb.transform.right;
-            _direction = horizontal;
+            _direction = direction;
         }
 
         private void FixedUpdate()
