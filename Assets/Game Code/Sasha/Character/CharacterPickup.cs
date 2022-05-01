@@ -7,57 +7,59 @@ namespace Game_Code.Sasha
     {
         [SerializeField] private Transform searchStart;
         [SerializeField] private Transform pickUpPlace;
-        [SerializeField] private float searchRadius;
+        [SerializeField] private Vector3 handVector;
         [SerializeField] private Vector3 throwVector;
         [SerializeField] private LayerMask searchLayers;
-        private Vector3 _direction;
-        private Box _possibleSelection;
+
+        private Direction _direction;
+        private Box _selectedBox;
 
         public Box carryingBox;
-        
-        private void Update()
-        {
-            var hits = Physics.OverlapSphere(searchStart.position, searchRadius, searchLayers);
 
-            if (hits.Length > 0)
-            {
-                if (_possibleSelection)
-                {
-                    _possibleSelection.UnSelectColor();
-                }
-                
-                var hit = hits[0];
-                
-                _possibleSelection = hit.transform.parent.GetComponent<Box>();
-                _possibleSelection.SelectBox();
-            }
+        private Box SearchPossibleBox()
+        {
+            var searchSize = new Vector3(handVector.magnitude, handVector.magnitude, 0);
+            var hits = Physics.OverlapBox(searchStart.position + (int)_direction * handVector, searchSize, Quaternion.identity, searchLayers);
+            if (hits.Length == 0)
+                return null;
+            return hits[0].transform.parent.GetComponent<Box>();
         }
 
-        public void SetDirection(Vector3 direction)
+        private void Update()
+        {
+            if (_selectedBox)
+                _selectedBox.Unselect();
+            _selectedBox = SearchPossibleBox();
+            if (_selectedBox)
+                _selectedBox.Select();
+        }
+
+        public void SetDirection(Direction direction)
         {
             _direction = direction;
         }
 
         public void PickUpBox()
         {
-            _possibleSelection.PickUp();
-            _possibleSelection.transform.position = pickUpPlace.position;
-            _possibleSelection.transform.rotation = pickUpPlace.rotation;
-            _possibleSelection.transform.parent = pickUpPlace;
-            carryingBox = _possibleSelection;
+            if (!_selectedBox)
+                return;
+            _selectedBox.PickUp(pickUpPlace);
+            carryingBox = _selectedBox;
+            _selectedBox = null;
         }
 
-        public void ThrowBox()
+        public void ThrowBox(Vector3 characterSpeed)
         {
-            _possibleSelection.transform.parent = null;
-            throwVector.x = Mathf.Sign(_direction.normalized.x) * throwVector.x;
-            carryingBox.Throw(throwVector);
+            carryingBox.transform.parent = null;
+            var moveVector = 2 * characterSpeed + new Vector3((int)_direction * throwVector.x, throwVector.y, throwVector.z);
+            carryingBox.Throw(moveVector);
             carryingBox = null;
         }
 
         private void OnDrawGizmos()
         {
-            Gizmos.DrawWireSphere(searchStart.position, searchRadius);
+            var searchSize = new Vector3(handVector.magnitude, handVector.magnitude, 0);
+            Gizmos.DrawCube(searchStart.position + handVector, searchSize);
         }
     }
 }

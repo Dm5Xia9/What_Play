@@ -8,13 +8,13 @@ namespace Game_Code.Sasha
         [SerializeField] private Camera camera;
         [SerializeField] private Transform cameraRoot, target;
         [SerializeField] private Vector3 targetOffset;
-        [SerializeField] private float moveSpeed;
+        [SerializeField] private float moveSpeed, scopeSpeed;
 
         private float _targetZoom;
 
         private void Update()
         {
-            camera.fieldOfView = Mathf.Lerp(camera.fieldOfView, _targetZoom, moveSpeed * Time.deltaTime);
+            //camera.fieldOfView = Mathf.Lerp(camera.fieldOfView, _targetZoom, moveSpeed * Time.deltaTime);
         }
 
 
@@ -23,6 +23,7 @@ namespace Game_Code.Sasha
             //cameraRoot.position = target.position + targetOffset;
             cameraRoot.position = Vector3.MoveTowards(cameraRoot.position, target.position + targetOffset,
                 moveSpeed * Time.deltaTime);
+            camera.fieldOfView = Mathf.Lerp(camera.fieldOfView, _targetZoom, scopeSpeed * Time.deltaTime);
         }
 
         public void SetViewPoint(CameraViewPoint viewPoint)
