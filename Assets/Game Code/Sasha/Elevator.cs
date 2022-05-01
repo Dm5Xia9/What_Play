@@ -9,43 +9,31 @@ namespace Game_Code.Sasha
         [SerializeField] private Vector3 targetPos;
         [SerializeField] private float moveSpeed, lerpCoef;
         [SerializeField] private bool print;
-
-        private Vector3 _oldPos;
+        private Vector3 _middlePoint;
 
         private void FixedUpdate()
         {
             var position = elevatorRb.position;
             var direction = (targetPos - position).normalized;
+            var distance = Vector3.Distance(position, targetPos);
+
+            var speedCoef = Mathf.Abs(position.y) / Mathf.Abs(_middlePoint.y);
+            speedCoef = speedCoef > 1 ? 2 - speedCoef : speedCoef;
             if (print)
-                Debug.Log(direction);
-            var distance = Mathf.Min(
-                Vector3.Distance(_oldPos, position),
-                Vector3.Distance(targetPos, position)
-            );
-
-            var boostDistance = moveSpeed * lerpCoef;
-            var speedCoef = 1.0f;
-            if (distance < boostDistance)
-                speedCoef = Mathf.Sqrt(Mathf.Pow(boostDistance, 2) - Mathf.Pow(distance, 2)) / boostDistance;
-            if (speedCoef < 0.1)
-                speedCoef = 0.1f;
-            var velocity = (1 - speedCoef) * moveSpeed;
-
-            var moveVector = direction * velocity * Time.deltaTime;
-            var newPosition = position + moveVector;
-
-            if (moveVector.magnitude < 0.05f * Time.deltaTime)
             {
-                newPosition = targetPos;
+                Debug.Log(speedCoef);
             }
 
-            elevatorRb.MovePosition(newPosition);
+            var moveVector = direction * moveSpeed * speedCoef * Time.deltaTime;
+
+            if (moveVector.magnitude > 0.05f)
+                elevatorRb.MovePosition(position + moveVector);
         }
 
         public void SetTargetPos(Vector3 pos)
         {
-            _oldPos = targetPos;
             targetPos = pos;
+            _middlePoint = (elevatorRb.position - targetPos);
         }
     }
 }
