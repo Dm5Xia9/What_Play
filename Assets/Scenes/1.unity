@@ -275,7 +275,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh85090
+  m_Name: pb_Mesh162234
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5413,7 +5413,7 @@ GameObject:
   - component: {fileID: 1866278835}
   - component: {fileID: 1866278836}
   m_Layer: 0
-  m_Name: "\u0442\u0435\u0441\u0442"
+  m_Name: Character Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

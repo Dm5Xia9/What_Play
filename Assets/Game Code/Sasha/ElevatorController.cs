@@ -6,13 +6,13 @@ namespace Game_Code.Sasha
 {
     public class ElevatorController : MonoBehaviour
     {
-        [SerializeField] private Elevator elevator;
+        [SerializeField] private ElevatorSasha elevatorSasha;
         [SerializeField] private Transform[] floors;
         [SerializeField] private int currentFloorIndex;
 
         private void Start()
         {
-            elevator.SetTargetPos(floors[currentFloorIndex].position);
+            elevatorSasha.SetTargetPos(floors[currentFloorIndex].position);
         }
 
         [Command("elevator.goUp")]
@@ -21,7 +21,7 @@ namespace Game_Code.Sasha
             if (currentFloorIndex < floors.Length - 1)
             {
                 currentFloorIndex++;
-                elevator.SetTargetPos(floors[currentFloorIndex].position);
+                elevatorSasha.SetTargetPos(floors[currentFloorIndex].position);
                 Debug.Log($"Elevator moving to {floors[currentFloorIndex].name}");
             }
             else
@@ -30,13 +30,21 @@ namespace Game_Code.Sasha
             }
         }
 
+        [Command("elevator.goToFloor")]
+        public void MoveToIndex(int index)
+        {
+            currentFloorIndex = index;
+            elevatorSasha.SetTargetPos(floors[index].position);
+
+        }
+
         [Command("elevator.goDown")]
         public void MoveElevatorDown()
         {
             if (currentFloorIndex > 0)
             {
                 currentFloorIndex--;
-                elevator.SetTargetPos(floors[currentFloorIndex].position);
+                elevatorSasha.SetTargetPos(floors[currentFloorIndex].position);
                 Debug.Log($"Elevator moving to {floors[currentFloorIndex].name}");
             }
             else
