@@ -43,6 +43,7 @@ namespace Game_Code.Sasha
         {
             if (!_selectedBox)
                 return;
+            _selectedBox.Unselect();
             _selectedBox.PickUp(pickUpPlace);
             carryingBox = _selectedBox;
             _selectedBox = null;
