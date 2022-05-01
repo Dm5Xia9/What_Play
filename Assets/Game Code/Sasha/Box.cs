@@ -9,10 +9,13 @@ namespace Game_Code.Sasha
         [SerializeField] private Renderer renderer;
         [SerializeField] private Color selectedColor, unselectedColor;
 
-        public void PickUp()
+        public void PickUp(Transform picker)
         {
             rb.isKinematic = true;
             collider.enabled = false;
+            transform.position = picker.position;
+            transform.rotation = picker.rotation;
+            transform.parent = picker;
         }
 
         public void Throw(Vector3 throwForce)
@@ -22,12 +25,12 @@ namespace Game_Code.Sasha
             collider.enabled = true;
         }
         
-        public void SelectBox()
+        public void Select()
         {
             renderer.material.color = selectedColor;
         }
 
-        public void UnSelectColor()
+        public void Unselect()
         {
             renderer.material.color = unselectedColor;
         }

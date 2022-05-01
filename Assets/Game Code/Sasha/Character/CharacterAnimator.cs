@@ -9,21 +9,13 @@ namespace Game_Code.Sasha
     {
         [SerializeField] private Transform characterModel;
         [SerializeField] private float rotateSpeed;
-        private Vector3 _direction;
 
-        public void SetDirection(Vector3 direction)
+        private Direction _direction = Direction.Right;
+
+        public void SetDirection(Direction direction)
         {
             _direction = direction;
-
-            switch (_direction.x)
-            {
-                case > 0:
-                    characterModel.DORotate(new Vector3(0, 0, 0), rotateSpeed);
-                    break;
-                case < 0:
-                    characterModel.DORotate(new Vector3(0, 180, 0), rotateSpeed);
-                    break;
-            }
+            characterModel.DORotate(new Vector3(0, 90 - 90 * (int)_direction, 0), rotateSpeed);
         }
     }
 }
