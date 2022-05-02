@@ -11,7 +11,8 @@ namespace Game_Code.Sasha
         [SerializeField] private Camera camera;
         [SerializeField] private float moveSpeed, scopeSpeed;
 
-        private Vector3 _targetPosition;
+        private Transform _target;
+        private Vector3 _targetOffset;
         private float _targetFOV;
 
         private void Awake()
@@ -21,14 +22,14 @@ namespace Game_Code.Sasha
 
         private void Update()
         {
-            camera.transform.position = Vector3.MoveTowards(camera.transform.position, _targetPosition, moveSpeed * Time.deltaTime);
+            camera.transform.position = Vector3.MoveTowards(camera.transform.position, _target.position + _targetOffset, moveSpeed * Time.deltaTime);
             camera.fieldOfView = Mathf.Lerp(camera.fieldOfView, _targetFOV, scopeSpeed * Time.deltaTime);
         }
 
-        public void Move(Vector3 position, float fov)
+        public void Move(Transform target, Vector3 offset, float fov)
         {
-            Debug.Log(position);
-            _targetPosition = position;
+            _target = target;
+            _targetOffset = offset;
             _targetFOV = fov;
         }
     }

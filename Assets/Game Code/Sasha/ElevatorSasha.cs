@@ -24,9 +24,7 @@ namespace Game_Code.Sasha
             var speedCoef = 1.0f;
             if (distance < boostDistance)
                 speedCoef = Mathf.Pow(distance, 0.8f) / Mathf.Pow(boostDistance, 0.8f);
-            speedCoef = speedCoef < 0.05f ? 0.05f : speedCoef;
-
-            //Debug.Log(speedCoef);
+            speedCoef = speedCoef < 0.025f ? 0.025f : speedCoef;
 
             if (Vector3.Distance(targetPos, position) > 0.05f)
                 elevatorRb.MovePosition(position + direction * (speedCoef * moveSpeed) * Time.deltaTime);

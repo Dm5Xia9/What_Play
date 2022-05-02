@@ -12,7 +12,8 @@ namespace Game_Code.Sasha
         private void LateUpdate()
         {
             var pos = child.position;
-            child.position = new Vector3(pos.x, parent.position.y + offset.y, pos.z);
+            pos.y = parent.position.y + offset.y;
+            child.position = pos;
         }
     }
 }

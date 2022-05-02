@@ -22,7 +22,7 @@ namespace Game_Code.Sasha
             if (collider.gameObject.layer == 7)
             {
                 Debug.Log($"Collision at {gameObject.name}");
-                _cameraController.Move(trigerPosition.position + relativeCameraPosition, cameraFOV);
+                _cameraController.Move(trigerPosition, relativeCameraPosition, cameraFOV);
             }
         }
     }
