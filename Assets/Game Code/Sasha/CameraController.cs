@@ -8,25 +8,28 @@ namespace Game_Code.Sasha
 {
     public class CameraController : MonoBehaviour
     {
-        [SerializeField] private CameraFollow cameraFollow;
-        [SerializeField] private CameraViewPoint defaultViewPoint;
-        private Dictionary<int, CameraViewPoint> _cameraViewPoints;
+        [SerializeField] private Camera camera;
+        [SerializeField] private float moveSpeed, scopeSpeed;
+
+        private Vector3 _targetPosition;
+        private float _targetFOV;
 
         private void Awake()
         {
-            _cameraViewPoints = FindObjectsOfType<CameraViewPoint>().ToDictionary(x => x.id, y => y);
+            camera = FindObjectOfType<Camera>();
         }
 
-        private void Start()
+        private void Update()
         {
-            cameraFollow.SetViewPoint(defaultViewPoint);
+            camera.transform.position = Vector3.MoveTowards(camera.transform.position, _targetPosition, moveSpeed * Time.deltaTime);
+            camera.fieldOfView = Mathf.Lerp(camera.fieldOfView, _targetFOV, scopeSpeed * Time.deltaTime);
         }
 
-        [Command("camera.setViewPoint")]
-        public void SetViewPoint(int index)
+        public void Move(Vector3 position, float fov)
         {
-            cameraFollow.SetViewPoint(_cameraViewPoints[index]);
+            Debug.Log(position);
+            _targetPosition = position;
+            _targetFOV = fov;
         }
-
     }
 }

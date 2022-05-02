@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6049315103739107286}
-  - component: {fileID: 4916974091684527540}
   - component: {fileID: 7710552522060173184}
+  - component: {fileID: 2793109765621974886}
   m_Layer: 6
   m_Name: Camera Trigger
   m_TagString: Untagged
@@ -33,19 +33,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4916974091684527540
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6049315103739107273}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf92422340da440da501465b6a55478e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraId: 0
 --- !u!65 &7710552522060173184
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -59,3 +46,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2793109765621974886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6049315103739107273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf92422340da440da501465b6a55478e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraPosition: {x: 0, y: 0, z: 0}
+  cameraFOV: 30

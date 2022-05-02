@@ -3,19 +3,27 @@ using UnityEngine;
 
 namespace Game_Code.Sasha
 {
-    public class CameraTrigger: MonoBehaviour
+    public class CameraTrigger : MonoBehaviour
     {
-        [SerializeField] private int cameraId;
+        //[SerializeField] private int cameraId;
+        [SerializeField] private Transform trigerPosition;
+        [SerializeField] private Vector3 relativeCameraPosition;
+        [SerializeField] private float cameraFOV;
+
         private CameraController _cameraController;
+
         private void Awake()
         {
             _cameraController = FindObjectOfType<CameraController>();
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void OnTriggerEnter(Collider collider)
         {
-            Debug.Log($"Collision at {gameObject.name}");
-            _cameraController.SetViewPoint(cameraId);
+            if (collider.gameObject.layer == 7)
+            {
+                Debug.Log($"Collision at {gameObject.name}");
+                _cameraController.Move(trigerPosition.position + relativeCameraPosition, cameraFOV);
+            }
         }
     }
 }

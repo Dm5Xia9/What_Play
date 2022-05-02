@@ -19,6 +19,13 @@ namespace Game_Code.Sasha
         private Vector3 _moveVector;
         private Direction _direction;
 
+        private void Start()
+        {
+            _direction = Direction.Left;
+            characterAnimator.SetDirection(_direction);
+            pickup.SetDirection(_direction);
+        }
+
         public void SetDirection(Vector3 direction)
         {
             _moveVector = direction * moveSpeed;
@@ -42,10 +49,10 @@ namespace Game_Code.Sasha
 
         public void InteractionWithBox()
         {
-            if (pickup.carryingBox)
-                pickup.ThrowBox(_moveVector * moveSpeed);
-            else
+            if (!pickup || !pickup.carryingBox)
                 pickup.PickUpBox();
+            else
+                pickup.ThrowBox(_moveVector * moveSpeed);
         }
     }
 }
