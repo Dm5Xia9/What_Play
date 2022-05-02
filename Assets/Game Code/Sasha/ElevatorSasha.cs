@@ -8,45 +8,34 @@ namespace Game_Code.Sasha
         [SerializeField] private Rigidbody elevatorRb;
         [SerializeField] private Vector3 targetPos;
         [SerializeField] private float moveSpeed, lerpCoef;
-        [SerializeField] private bool print;
-        private Vector3 _middlePoint;
-        private bool _movingUp;
+
+        private Vector3 _oldPos;
 
         private void FixedUpdate()
         {
             var position = elevatorRb.position;
             var direction = (targetPos - position).normalized;
-            var distance = Vector3.Distance(position, targetPos);
 
-            var speedCoef = Mathf.Abs(position.y) / Mathf.Abs(_middlePoint.y);
-            speedCoef = _movingUp && position.y > targetPos.y ? speedCoef / 2 : speedCoef;
-            speedCoef = speedCoef > 1 ? 2f - speedCoef : speedCoef;
-            speedCoef = Mathf.Approximately(speedCoef, 0f) ? 0.05f : speedCoef;
-            speedCoef *= lerpCoef;
+            var distance = Mathf.Min(
+                Vector3.Distance(_oldPos, position),
+                Vector3.Distance(targetPos, position)
+            );
+            var boostDistance = moveSpeed * lerpCoef;
+            var speedCoef = 1.0f;
+            if (distance < boostDistance)
+                speedCoef = Mathf.Pow(distance, 0.8f) / Mathf.Pow(boostDistance, 0.8f);
+            speedCoef = speedCoef < 0.05f ? 0.05f : speedCoef;
 
-            if (print)
-            {
-                Debug.Log(speedCoef);
-            }
+            //Debug.Log(speedCoef);
 
-            var moveVector = direction * moveSpeed * speedCoef * Time.deltaTime;
-            var newPosition = position + moveVector;
-
-            if (distance < 0.2f)
-            {
-                newPosition = targetPos;
-                elevatorRb.MovePosition(newPosition);
-            }
-
-            if (!Mathf.Approximately(moveVector.magnitude,0f))
-                elevatorRb.MovePosition(newPosition);
+            if (Vector3.Distance(targetPos, position) > 0.05f)
+                elevatorRb.MovePosition(position + direction * (speedCoef * moveSpeed) * Time.deltaTime);
         }
 
         public void SetTargetPos(Vector3 pos)
         {
+            _oldPos = targetPos;
             targetPos = pos;
-            _middlePoint = (elevatorRb.position + targetPos) / 2;
-            _movingUp = elevatorRb.position.y < targetPos.y;
         }
     }
 }
