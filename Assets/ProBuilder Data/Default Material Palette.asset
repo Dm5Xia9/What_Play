@@ -14,12 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   array:
   - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2100000, guid: cf25661712622a2428d3f03a9a5c9a0a, type: 2}
+  - {fileID: 2100000, guid: e19bd0458259a62439bbe0a9c1d853bf, type: 2}
+  - {fileID: 2100000, guid: f8abef85a8795cb4892e9ab293fe8268, type: 2}
+  - {fileID: 2100000, guid: 8c0545b580e391c47b877b3a640b2ba5, type: 2}
+  - {fileID: 2100000, guid: fb70590457a59524aab4bc65532af421, type: 2}
+  - {fileID: 2100000, guid: 1bc3a6bce4537a04491ef6eeb093a095, type: 2}
+  - {fileID: 2100000, guid: 5068079cc80400b4ca80a87da2111fbe, type: 2}
+  - {fileID: 2100000, guid: fa855fdd3f3b4b7448a66e1462a6429d, type: 2}
+  - {fileID: 2100000, guid: 8d8c3098587283745b40a60fbbdc891f, type: 2}
+  - {fileID: 2100000, guid: a552946ad84eb5f47855b9df0bd222a5, type: 2}
+  - {fileID: 2100000, guid: 9bf036dc11ac11f4985352f6cd2abb07, type: 2}
+  - {fileID: 2100000, guid: 8ca341e5c7e0eb849ac64d27ddba308b, type: 2}
