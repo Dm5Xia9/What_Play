@@ -7,22 +7,32 @@ namespace Game_Code.Sasha
     public class ElevatorController : MonoBehaviour
     {
         [SerializeField] private ElevatorSasha elevatorSasha;
-        [SerializeField] private Transform[] floors;
         [SerializeField] private int currentFloorIndex;
 
-        private void Start()
+        private Transform[] _floors;
+
+        public void SetFloors(GameObject[] floors)
         {
-            elevatorSasha.SetTargetPos(floors[currentFloorIndex].position);
+            _floors = new Transform[floors.Length];
+            for (int f = 0; f < floors.Length; f++)
+                _floors[f] = floors[f].transform;
+            elevatorSasha.SetTargetPos(_floors[currentFloorIndex].position);
+        }
+
+        public void SetFloors(Transform[] floors)
+        {
+            _floors = floors;
+            elevatorSasha.SetTargetPos(_floors[currentFloorIndex].position);
         }
 
         [Command("elevator.goUp")]
         public void MoveElevatorUp()
         {
-            if (currentFloorIndex < floors.Length - 1)
+            if (currentFloorIndex < _floors.Length - 1)
             {
                 currentFloorIndex++;
-                elevatorSasha.SetTargetPos(floors[currentFloorIndex].position);
-                Debug.Log($"Elevator moving to {floors[currentFloorIndex].name}");
+                elevatorSasha.SetTargetPos(_floors[currentFloorIndex].position);
+                Debug.Log($"Elevator moving to {_floors[currentFloorIndex].name}");
             }
             else
             {
@@ -34,7 +44,7 @@ namespace Game_Code.Sasha
         public void MoveToIndex(int index)
         {
             currentFloorIndex = index;
-            elevatorSasha.SetTargetPos(floors[index].position);
+            elevatorSasha.SetTargetPos(_floors[index].position);
 
         }
 
@@ -44,8 +54,8 @@ namespace Game_Code.Sasha
             if (currentFloorIndex > 0)
             {
                 currentFloorIndex--;
-                elevatorSasha.SetTargetPos(floors[currentFloorIndex].position);
-                Debug.Log($"Elevator moving to {floors[currentFloorIndex].name}");
+                elevatorSasha.SetTargetPos(_floors[currentFloorIndex].position);
+                Debug.Log($"Elevator moving to {_floors[currentFloorIndex].name}");
             }
             else
             {

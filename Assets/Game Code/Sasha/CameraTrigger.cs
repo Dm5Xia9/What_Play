@@ -19,7 +19,7 @@ namespace Game_Code.Sasha
 
         private void OnTriggerEnter(Collider collider)
         {
-            if (collider.gameObject.layer == 7)
+            if (collider.gameObject.name == "Character Collider")
             {
                 Debug.Log($"Collision at {gameObject.name}");
                 _cameraController.Move(trigerPosition, relativeCameraPosition, cameraFOV);

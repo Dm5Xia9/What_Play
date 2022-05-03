@@ -204,6 +204,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6049315103739107286, guid: 8a0c72b9366cb4e4496a1a3835418f33, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6049315103739107286, guid: 8a0c72b9366cb4e4496a1a3835418f33, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.5
       objectReference: {fileID: 0}
@@ -296,6 +300,10 @@ PrefabInstance:
     - target: {fileID: 6049315103739107286, guid: 8a0c72b9366cb4e4496a1a3835418f33, type: 3}
       propertyPath: m_LocalScale.y
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6049315103739107286, guid: 8a0c72b9366cb4e4496a1a3835418f33, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6049315103739107286, guid: 8a0c72b9366cb4e4496a1a3835418f33, type: 3}
       propertyPath: m_LocalPosition.x
@@ -398,6 +406,10 @@ PrefabInstance:
     - target: {fileID: 4378024944708659929, guid: a343cd6abbfeed54483c58769f5b20e8, type: 3}
       propertyPath: m_Name
       value: Floor Model
+      objectReference: {fileID: 0}
+    - target: {fileID: 4378024945069105377, guid: a343cd6abbfeed54483c58769f5b20e8, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a343cd6abbfeed54483c58769f5b20e8, type: 3}

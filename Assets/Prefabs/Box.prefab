@@ -68,6 +68,7 @@ MonoBehaviour:
   renderer: {fileID: 2566974407291183521}
   selectedColor: {r: 0.6226415, g: 0.51338553, b: 0.51338553, a: 1}
   unselectedColor: {r: 1, g: 1, b: 1, a: 1}
+  id: -2
 --- !u!1 &7628090256724380294
 GameObject:
   m_ObjectHideFlags: 0
@@ -79,7 +80,7 @@ GameObject:
   - component: {fileID: 7628090256724380345}
   - component: {fileID: 7628090256724380344}
   m_Layer: 8
-  m_Name: Collider
+  m_Name: Box Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

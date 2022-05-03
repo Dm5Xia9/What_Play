@@ -9,6 +9,8 @@ namespace Game_Code.Sasha
         [SerializeField] private Renderer renderer;
         [SerializeField] private Color selectedColor, unselectedColor;
 
+        public int ID { get; set; }
+
         public void PickUp(Transform picker)
         {
             rb.isKinematic = true;
@@ -34,5 +36,6 @@ namespace Game_Code.Sasha
         {
             renderer.material.color = unselectedColor;
         }
+
     }
 }
