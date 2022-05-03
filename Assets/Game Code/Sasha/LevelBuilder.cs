@@ -31,6 +31,7 @@ namespace Game_Code.Sasha
                 var triggers = floor.GetComponentsInChildren<DeliveryTrigger>();
                 var rDoor = Random.Range(0, triggers.Length);
                 box.GetComponent<Box>().ID = triggers[rDoor].ID;
+                box.GetComponentInChildren<TMPro.TextMeshPro>().text = $"{triggers[rDoor].ID}";
                 Debug.Log($"Floor {rFloor}, door {rDoor}");
             }
         }
@@ -45,8 +46,13 @@ namespace Game_Code.Sasha
             {
                 floorSpawn.y += floorHeight;
                 var floor = Instantiate(floorSample, floorSpawn, Quaternion.identity);
-                foreach (var trigger in floor.GetComponentsInChildren<DeliveryTrigger>())
-                    trigger.ID = Random.Range(1, 1000);
+                var triggers = floor.GetComponentsInChildren<DeliveryTrigger>();
+                var tablets = floor.GetComponentsInChildren<TMPro.TextMeshPro>();
+                for (int door = 0; door < triggers.Length; door++)
+                {
+                    triggers[door].ID = Random.Range(1, 1000);
+                    tablets[door].text = $"{triggers[door].ID}";
+                }
                 floors[i + 1] = floor;
             }
             return floors;
